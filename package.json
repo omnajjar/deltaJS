@@ -17,12 +17,31 @@
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
   },
-  "dependencies": {
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --config ./prettierrc --write",
+      "git add"
+    ]
+  },
+  "dependencies": {},
   "devDependencies": {
-    "nwb": "0.23.x"
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-restricted-globals": "0.1.1",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "nwb": "0.23.x",
+    "object.assign": "4.1.0",
+    "object.entries": "1.0.4",
+    "prettier": "^1.17.1"
   },
-  "author": "",
+  "author": "Osama Mohammad Najjar <osama.najjar.m@gmail.com> (https://omnajjar.github.io/)",
   "homepage": "",
   "license": "MIT",
   "repository": ""
