@@ -1,7 +1,7 @@
 {
-  "name": "deltaJS",
+  "name": "deltajs",
   "version": "1.0.0",
-  "description": "Describe deltaJS here",
+  "description": "A library that applies 🔺 delta changes (patches) to JSON and Js objects",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -10,36 +10,43 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-web-module",
+    "build": "rollup --config ./config/rollup.config.js",
     "clean": "nwb clean-module",
     "prepublishOnly": "npm run build",
-    "test": "nwb test",
-    "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
+    "test": "mocha ./src/tests",
+    "test:coverage": "nyc mocha ./src/tests",
+    "test:watch": "nwb test --server",
+    "format": "prettier --config ./config/.prettierrc --write ./src/*.js",
+    "lint": "eslint --config ./config/.eslintrc ./src/",
+    "lint:fix": "yarn lint --fix",
+    "validate": "yarn lint && yarn format && yarn test"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn lint && yarn format"
     }
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --config ./prettierrc --write",
-      "git add"
-    ]
+  "dependencies": {
+    "rollup": "^1.12.4"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-restricted-globals": "0.1.1",
     "husky": "^2.3.0",
-    "lint-staged": "^8.1.7",
-    "nwb": "0.23.x",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "object.assign": "4.1.0",
     "object.entries": "1.0.4",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^5.0.0"
   },
   "author": "Osama Mohammad Najjar <osama.najjar.m@gmail.com> (https://omnajjar.github.io/)",
   "homepage": "",
