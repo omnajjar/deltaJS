@@ -1,7 +1,14 @@
+/node_modules
 /coverage
 /demo/dist
+
+
 /es
 /lib
-/node_modules
 /umd
+
+.nyc_output/
+
 npm-debug.log*
+
+package-lock.json
